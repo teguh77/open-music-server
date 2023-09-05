@@ -69,19 +69,19 @@ class SongsService {
     return result.rows[0];
   }
 
-  // async getSongsByAlbumId(id) {
-  //   const query = {
-  //     text: 'SELECT * FROM songs WHERE "albumId" = $1',
-  //     values: [id],
-  //   };
-  //   const result = await this._pool.query(query);
+  async getSongsByAlbumId(id) {
+    const query = {
+      text: 'SELECT * FROM songs WHERE "albumId" = $1',
+      values: [id],
+    };
+    const result = await this._pool.query(query);
 
-  //   if (!result.rows.length) {
-  //     throw new NotFoundError('Lagu tidak ditemukan');
-  //   }
+    if (!result.rows.length) {
+      throw new NotFoundError('Lagu tidak ditemukan');
+    }
 
-  //   return result.rows;
-  // }
+    return result.rows;
+  }
 
   async editSongById(id, { title, year, genre, performer, duration, albumId }) {
     const query = {
